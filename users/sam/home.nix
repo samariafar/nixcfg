@@ -104,7 +104,11 @@
     sessionVariables = {
       EDITOR = "nano";
       VISUAL = "nano";
+      VOLTA_HOME = "${config.home.homeDirectory}/.volta";
     };
+
+    # Volta-managed Node shims (npm globals installed via `volta install`).
+    sessionPath = [ "${config.home.homeDirectory}/.volta/bin" ];
 
     # Ensure custom top-level directories exist on activation. Safe to re-run
     # — `mkdir -p` skips paths that already exist.
