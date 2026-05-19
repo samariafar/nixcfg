@@ -13,6 +13,7 @@
     ../../modules/nixos/backup.nix
     ../../modules/nixos/boot.nix
     ../../modules/nixos/desktop.nix
+    ../../modules/nixos/flatpak.nix
     ../../modules/nixos/fonts.nix
     # Immich now runs via Docker (see compose / dockur stack). Re-enable
     # this import to switch back to the native NixOS service.
