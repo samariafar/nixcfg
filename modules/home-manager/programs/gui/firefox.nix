@@ -286,6 +286,15 @@
         "simple-translate@sienori".private_browsing = true;
         "uBlock0@raymondhill.net".private_browsing = true;
 
+        # History Clean and Control — erase browsing history for a specific
+        # website. GUID confirmed via AMO API. Distinct from NUR's
+        # `history-cleaner` (Rayquaza01), which deletes history by age.
+        "{a9c0e3d2-7b81-4f3e-9c2d-5f6e8a1b4c3d}" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/history-clean-and-control/latest.xpi";
+          default_area = "menupanel";
+        };
+
         # Markdown Reader — render .md files in-browser. GUID confirmed via
         # AMO API (https://addons.mozilla.org/api/v5/addons/addon/markdown-reader-ext/).
         "{f3ee08f8-d4d8-4095-8096-4bb784d082f9}" = {
@@ -307,6 +316,13 @@
         # them in extensions.json (cause unclear, hits a subset of NUR
         # addons inconsistently). The policy-install path is reliable.
         # ------------------------------------------------------------------
+
+        # Dark Reader — dark-mode rendering.
+        "addon@darkreader.org" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+          default_area = "menupanel";
+        };
 
         # LanguageTool — grammar/spell checker.
         "languagetool-webextension@languagetool.org" = {
