@@ -300,6 +300,27 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/netfix/latest.xpi";
           default_area = "menupanel";
         };
+
+        # ------------------------------------------------------------------
+        # Addons fall back to policy-install because Firefox 150 silently
+        # deletes their NUR-sideloaded XPIs on startup before recording
+        # them in extensions.json (cause unclear, hits a subset of NUR
+        # addons inconsistently). The policy-install path is reliable.
+        # ------------------------------------------------------------------
+
+        # LanguageTool — grammar/spell checker.
+        "languagetool-webextension@languagetool.org" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
+          default_area = "menupanel";
+        };
+
+        # Return YouTube Dislike — restores the YouTube dislike count.
+        "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpi";
+          default_area = "menupanel";
+        };
       };
     };
 
@@ -328,11 +349,9 @@
         packages = with pkgs.nur.repos.rycee.firefox-addons; [
           bitwarden
           flagfox
-          languagetool
           metamask
           multi-account-containers
           raindropio
-          return-youtube-dislikes
           sidebery
           simple-translate
           sponsorblock
