@@ -42,6 +42,20 @@
   # GPG agent (used for git commit signing). SSH support intentionally off.
   programs.gnupg.agent.enable = true;
 
+  # Stub dynamic linker for generic-Linux binaries (e.g. Node toolchains
+  # downloaded by Volta/nvm, prebuilt VS Code extensions, AppImage tools
+  # that bypass appimage-run). Without this NixOS refuses to exec them
+  # because /lib64/ld-linux-x86-64.so.2 doesn't exist. The library set
+  # below covers Node + most common native npm modules.
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      openssl
+      zlib
+    ];
+  };
+
   # iOS device USB connectivity (usbmuxd2 is the maintained fork)
   services.usbmuxd = {
     enable = true;
