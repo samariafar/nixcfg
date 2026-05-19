@@ -1,0 +1,21 @@
+# Legacy passgen from the previous nixos config. Kept here for reference only —
+# the active version lives in passgen.sh and is preferred. The file extension
+# is intentionally not .sh so the shell.nix glob does not source it.
+#
+# Usage: passgen [count]
+# Falls back to /dev/urandom when Bitwarden CLI (bw) is not installed.
+
+# passgen() {
+# 	local num="${1:-1}"
+#
+# 	if ! command -v bw &> /dev/null; then
+# 		for i in $(seq 1 "$num"); do
+# 			password=$(< /dev/urandom tr -dc 'A-Za-z0-9_@#%^' | head -c 24)
+# 			echo -en "${i}.\t"; echo "${password}"
+# 		done
+# 	else
+# 		for i in $(seq 1 "$num"); do
+# 			echo -en "${i}.\t"; bw generate -luns --length 24 --minNumber 4 --minSpecial 4
+# 		done
+# 	fi
+# }
