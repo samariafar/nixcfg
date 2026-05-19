@@ -1,0 +1,17 @@
+# sops-nix recipient list. After generating your age key with:
+#   age-keygen -o ~/Vault/Keys/Sam/age-private.key
+# read the public key with:
+#   cat ~/Vault/Keys/Sam/age-public.key
+# and replace the AAAA placeholder below with the line that starts `age1...`.
+
+keys:
+  - &sam age16uh8whw8s6kqpv0wke4qya0fq6cdfq45ffzcajxe5dpm387jnu0qwumkkt
+
+creation_rules:
+  - path_regex: secrets\.yaml$
+    age:
+      - *sam
+
+stores:
+  yaml:
+    indent: 2
