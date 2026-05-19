@@ -1,0 +1,32 @@
+{ ... }:
+
+{
+  xdg.mimeApps = {
+    enable = true;
+
+    defaultApplications = {
+      # Documents
+      "application/pdf" = "org.gnome.Evince.desktop";
+      "text/plain" = "org.gnome.TextEditor.desktop";
+
+      # Markdown — handled by MD Reader Firefox addon
+      "text/markdown" = "firefox.desktop";
+
+      # Web
+      "application/x-extension-htm" = "firefox.desktop";
+      "application/x-extension-html" = "firefox.desktop";
+      "application/x-extension-shtml" = "firefox.desktop";
+      "application/x-extension-xht" = "firefox.desktop";
+      "application/x-extension-xhtml" = "firefox.desktop";
+      "application/xhtml+xml" = "firefox.desktop";
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/chrome" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+
+      # E-Mails
+      "message/rfc822" = "thunderbird.desktop";
+      "x-scheme-handler/mailto" = "thunderbird.desktop";
+    };
+  };
+}

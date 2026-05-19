@@ -1,0 +1,28 @@
+include "%L"
+
+# Pre-sets (already in the system Compose file pulled in by `include "%L"`):
+#   <Multi_key> <t>      <m>              : "™"    U2122 # Trade Mark Sign
+#   <Multi_key> <o>      <r>              : "®"    U00AE # Registered Sign
+#   <Multi_key> <o>      <c>              : "©"    U00A9 # Copyright Sign
+#   <Multi_key> <equal>  <e>              : "€"    U20AC # Euro Sign
+#   <Multi_key> <minus>  <minus> <period> : "–"    U2013 # En dash
+#   <Multi_key> <minus>  <minus> <minus>  : "—"    U2014 # Em dash
+#   <Multi_key> <period> <period> <period> : "…"   U2026 # Horizontal Ellipsis
+#   <Multi_key> <space>  <space>          : " "   U00A0 # No-Break Space
+
+# Currency / units
+<Multi_key> <equal>      <T>          : "₮"    U20AE   # Tugrik (used as Toman placeholder)
+<Multi_key> <underscore> <O>          : "Ω"    U03A9   # Greek Capital Omega / Ohm
+
+# Social / misc
+<Multi_key> <backslash>  <X>          : "𝕏"   U1D54F   # Mathematical Double-Struck X (X social)
+
+# Box-drawing for tree diagrams
+<Multi_key> <t> <n>                   : "─"    U2500   # Light horizontal       (tree node)
+<Multi_key> <t> <s>                   : "│"    U2502   # Light vertical         (sub-branch)
+<Multi_key> <t> <b>                   : "├"    U251C   # Light vertical+right   (branch)
+<Multi_key> <t> <e>                   : "└"    U2514   # Light up+right         (ending branch)
+
+# Whitespace
+<Multi_key> <space> <0>               : "‌"   U200C   # Zero-Width Non-Joiner   (Persian)
+<Multi_key> <backslash> <t>           : "	"   U0009   # Horizontal tab
