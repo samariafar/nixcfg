@@ -56,6 +56,15 @@
       zed = "zeditor";
     };
     initExtra = ''
+    	# Re-source ~/.profile so changes to home.sessionVariables /
+    	# home.sessionPath reach interactive non-login shells without a
+    	# logout/login cycle. hm-session-vars.sh self-guards via
+    	# $__HM_SESS_VARS_SOURCED, which is inherited from gnome-shell —
+    	# so unset it first to force re-evaluation against the *current*
+    	# generation rather than whatever was active at GDM login.
+    	unset __HM_SESS_VARS_SOURCED
+    	[ -f "$HOME/.profile" ] && . "$HOME/.profile"
+
     	# Load custom commands
     	for script in ${./scripts/commands}/*.sh; do
     		[ -f "$script" ] && source "$script"
