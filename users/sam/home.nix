@@ -92,6 +92,8 @@
       warp
     ] ++ (with pkgs.unstable; [
       claude-code
+      codex
+      gemini-cli
       lmstudio
       opencode
       winboat
