@@ -38,6 +38,41 @@
     secrets = {
       "wifi/home" = { };
       "wifi/office" = { };
+      "profiles/artifex/name" = { owner = "sam"; };
+      "profiles/artifex/email" = { owner = "sam"; };
+      "profiles/artifex/signingkey" = { owner = "sam"; };
+    };
+
+    # Templates render at activation time with decrypted secrets substituted
+    # in. They land at /run/secrets-rendered/<name>; home-manager symlinks or
+    # sources them from the user's home (see modules/home-manager/programs/
+    # cli/git.nix). Owner = "sam" so the user can read the rendered files.
+    templates = {
+      # Git include file for the artifex profile, loaded via includeIf.
+      "git-config-artifex" = {
+        owner = "sam";
+        content = ''
+          [user]
+            name = ${config.sops.placeholder."profiles/artifex/name"}
+            email = ${config.sops.placeholder."profiles/artifex/email"}
+            signingkey = ${config.sops.placeholder."profiles/artifex/signingkey"}
+
+          [core]
+            sshCommand = ssh -i ~/Vault/Keys/Artifex/ssh-private.key
+        '';
+      };
+
+      # Env file sourced by ~/.config/git/profiles.sh to populate the
+      # artifex-profile entries in PROFILE_NAME / PROFILE_EMAIL /
+      # PROFILE_SIGNINGKEY for the `git profile` shell helper.
+      "git-profiles-artifex" = {
+        owner = "sam";
+        content = ''
+          PROFILE_ARTIFEX_NAME='${config.sops.placeholder."profiles/artifex/name"}'
+          PROFILE_ARTIFEX_EMAIL='${config.sops.placeholder."profiles/artifex/email"}'
+          PROFILE_ARTIFEX_SIGNINGKEY='${config.sops.placeholder."profiles/artifex/signingkey"}'
+        '';
+      };
     };
   };
 }
