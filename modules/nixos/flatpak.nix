@@ -5,11 +5,13 @@
   # - ClamUI: modern GTK4 frontend for ClamAV (not in nixpkgs)
   # - Convertidor: unit converter (not in nixpkgs)
   # - Denaro: nixpkgs build crashes on .nmoney load (GirCore/.NET binding bug)
+  # - Sticky Notes: GTK4 sticky-notes app by vixalien (not in nixpkgs)
   # - Tintero: writing studio (not in nixpkgs)
   services.flatpak = {
     enable = true;
     packages = [
       "app.tintero.Tintero"
+      "com.vixalien.sticky"
       "io.github.linx_systems.ClamUI"
       "org.nickvision.money"
       "tech.digiroad.Convertidor"
