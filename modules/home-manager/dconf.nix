@@ -134,8 +134,9 @@ in
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
         "org.gnome.Ptyxis.desktop"
-        "com.vixalien.sticky.desktop"
         "org.gnome.Calculator.desktop"
+        "com.vixalien.sticky.desktop"
+        "io.github.alainm23.planify.desktop"
         "thunderbird.desktop"
         "firefox.desktop"
       ];

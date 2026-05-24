@@ -66,6 +66,7 @@
       obs-studio
       obsidian
       pika-backup
+      planify
       pnpm
       poetry
       # protonmail-bridge-gui — GUI variant. The headless `protonmail-bridge`
