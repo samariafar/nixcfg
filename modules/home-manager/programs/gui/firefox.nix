@@ -303,6 +303,22 @@
           default_area = "menupanel";
         };
 
+        # JSON Viewer Pro — pretty-print/inspect .json responses in-browser.
+        # GUID confirmed via AMO API.
+        "jaswantk9177@gmail.com" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/json-viewer-pro/latest.xpi";
+          default_area = "menupanel";
+        };
+
+        # XML Viewer — pretty-print/inspect XML documents in-browser. GUID
+        # confirmed via AMO API.
+        "@xmlformatter" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/xml-viewer/latest.xpi";
+          default_area = "menupanel";
+        };
+
         # NetFix — PiP for Netflix. GUID confirmed via AMO API.
         "netfix-pip@firefox" = {
           installation_mode = "force_installed";
