@@ -345,6 +345,7 @@ in
         "lm-studio.desktop"
         "bruno.desktop"
         "gitkraken.desktop"
+        "SourceGit.desktop"
         "imhex.desktop"
         "io.gitlab.liferooter.TextPieces.desktop"
         "chromium-browser.desktop"

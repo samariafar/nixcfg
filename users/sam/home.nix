@@ -81,6 +81,7 @@
       # exists for the relay/server side — intentionally not enabled here.
       rustdesk-flutter
       rustup
+      sourcegit
       # TeamViewer client. Connections require teamviewerd; we leave
       # `services.teamviewer.enable` off (user request) so launch the daemon
       # manually with `sudo systemctl start teamviewerd` only when needed.
