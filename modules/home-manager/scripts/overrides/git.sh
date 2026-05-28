@@ -79,7 +79,7 @@ __git_profile_do_init() {
 	git init -q  # routes through the override above → also sets core.filemode=false
 	printf '# %s\n\n' "$name" > README.md
 	command git add README.md
-	git commit "Initial commit"  # routes through the commit override (no -m needed)
+	git commit "🎉 chore: initial commit"  # routes through the commit override (no -m needed)
 	gum style --foreground 212 "Initialized repo for '$name'"
 }
 
