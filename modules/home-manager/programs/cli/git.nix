@@ -34,6 +34,7 @@ in
     };
 
     ignores = [
+      ".claude/"
       ".direnv/"
       ".DS_Store"
       ".idea/"
