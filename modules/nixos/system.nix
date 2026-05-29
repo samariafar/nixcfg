@@ -132,6 +132,7 @@
     tmux # Terminal multiplexer
     wl-clipboard # Wayland clipboard CLI (used by the `clipboard` shell alias)
     zellij # Terminal multiplexer alternative
+    zoxide # Smarter cd that learns frequently-used directories
 
     # System monitoring and info
     btop # Process monitor with GPU support
@@ -149,6 +150,7 @@
 
     # Version control
     gh # GitHub CLI
+    git-crypt # Transparent file encryption in git
     mr # MyRepos - manage multiple repos
 
     # Fonts
