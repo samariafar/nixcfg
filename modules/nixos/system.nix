@@ -96,6 +96,7 @@
     eza # Modern ls
     fd # Modern find
     file
+    hexyl # Hex viewer with colored output
     ripgrep # Modern grep (rg)
 
     # Network tools
@@ -127,6 +128,7 @@
     bc # Arbitrary-precision calculator
     fzf # Fuzzy finder
     gum # TUI primitives (confirm, choose, input, style) for shell scripts
+    mprocs # Run multiple commands in parallel with a TUI
     powershell
     tldr # TL;DR pages for commands
     tmux # Terminal multiplexer
