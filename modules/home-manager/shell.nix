@@ -50,7 +50,7 @@
       nix-info = "nix-info -m";
       open = "xdg-open";
       python = "python3";
-      rebuild = "sudo nixos-rebuild switch --flake ~/.nixcfg#workstation";
+      rebuild = "nixos-rebuild switch --sudo --flake ~/.nixcfg#workstation";
       sail = "./vendor/bin/sail";
       tree = "eza --tree -lah --git --time-style=long-iso --ignore-glob='.git|node_modules'";
       zed = "zeditor";

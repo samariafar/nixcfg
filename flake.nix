@@ -59,7 +59,7 @@
     {
       nixosConfigurations = {
         # Workstation configuration
-        # Usage: sudo nixos-rebuild switch --flake ~/.nixcfg#workstation
+        # Usage: nixos-rebuild switch --sudo --flake ~/.nixcfg#workstation
         workstation = nixpkgs.lib.nixosSystem {
           inherit system;
 

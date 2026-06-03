@@ -119,8 +119,10 @@ copy-hardware:
 	EOF
 
 # Build and activate configuration
+# Uses --sudo so eval/build runs as the user (private SSH flake inputs work);
+# only the final activation step escalates via sudo.
 switch:
-	sudo nixos-rebuild switch --flake $(FLAKE)#$(CONFIG)
+	nixos-rebuild switch --sudo --flake $(FLAKE)#$(CONFIG)
 	if [ -n "$${DBUS_SESSION_BUS_ADDRESS:-}" ] && command -v gnome-extensions >/dev/null; then
 		gnome-extensions disable nightthemeswitcher@romainvigier.fr
 		gnome-extensions enable nightthemeswitcher@romainvigier.fr
@@ -128,11 +130,11 @@ switch:
 
 # Build and activate configuration (test mode - not persistent across reboots)
 test:
-	sudo nixos-rebuild test --flake $(FLAKE)#$(CONFIG)
+	nixos-rebuild test --sudo --flake $(FLAKE)#$(CONFIG)
 
 # Build configuration and set as default for next boot (doesn't activate now)
 boot:
-	sudo nixos-rebuild boot --flake $(FLAKE)#$(CONFIG)
+	nixos-rebuild boot --sudo --flake $(FLAKE)#$(CONFIG)
 
 # Update flake inputs
 update:
@@ -244,4 +246,4 @@ generations:
 
 # Rollback to previous system generation
 rollback:
-	sudo nixos-rebuild switch --rollback
+	nixos-rebuild switch --sudo --rollback
