@@ -373,6 +373,7 @@ in
       apps = [
         "org.kde.krita.desktop"
         "org.inkscape.Inkscape.desktop"
+        "io.github.shonebinu.Defuse.desktop"
         "com.github.finefindus.eyedropper.desktop"
         "com.github.huluti.Curtail.desktop"
         "be.alexandervanhee.gradia.desktop"
