@@ -21,6 +21,9 @@ let
   };
 in
 {
+  # ~/.local/bin/git (the wrapper) must shadow the Nix-profile git on PATH.
+  home.sessionPath = [ "~/.local/bin" ];
+
   # NOTE: home-manager 25.11 collapsed programs.git's per-key options
   # (userName, userEmail, aliases, extraConfig) into a single
   # `programs.git.settings` INI attrset. Delta moved to `programs.delta`.
@@ -149,4 +152,18 @@ in
     )
     VALID_PROFILES=(sam artifex)
   '';
+
+  # Proxy subcommands — sourced by git.sh's git() override
+  home.file.".config/git/proxy.sh".source = ../../scripts/proxy/proxy.sh;
+
+  # Git wrapper on PATH — syncs proxy bare repos before fetch/pull/push so
+  # that tools using libgit2 (e.g. GitKraken) transparently get fresh data
+  # from the real remote without ever seeing its URL.
+  home.file."bin/git" = {
+    text = builtins.replaceStrings
+      [ "@REAL_GIT@" ]
+      [ "${pkgs.git}/bin/git" ]
+      (builtins.readFile ../../scripts/proxy/wrapper.sh);
+    executable = true;
+  };
 }
