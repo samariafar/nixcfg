@@ -98,7 +98,7 @@ in
       # TODO: Add Gitea URL rewriting when domain is known
 
       # The artifex profile for ~/Projects/Public/
-      includeIf."gitdir:~/Projects/Public/" = {
+      includeIf."gitdir:~/Projects/Public/Contributions/" = {
         path = "~/.config/git/config-artifex";
       };
     };
