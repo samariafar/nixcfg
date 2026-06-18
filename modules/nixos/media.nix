@@ -5,6 +5,7 @@
     ffmpeg-full # Comprehensive video/audio tools and codecs
     libheif # HEIC/HEIF image format
     libraw # RAW photo format
+    sox # Audio conversion / processing CLI (required by Claude Code voice)
 
     # GStreamer plugins for video format support in GNOME apps
     gst_all_1.gst-libav # libav-based codecs (covers most formats)
