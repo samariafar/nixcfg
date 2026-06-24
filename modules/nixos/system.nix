@@ -28,6 +28,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # Mirror the nixpkgs.config setting above for ad-hoc CLI invocations
+  # (`nix shell nixpkgs#…`, `nix-env -iA`, `nix run`) that bypass the
+  # module-level config and only consult this env var.
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
+
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
