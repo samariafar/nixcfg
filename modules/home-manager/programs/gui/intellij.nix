@@ -12,14 +12,14 @@ let
   # Per-IDE config-dir prefix used by `~/.config/JetBrains/<prefix><version>/`.
   # Add a new entry here when you install another JetBrains IDE.
   idePrefixes = [
-    "CLion"
-    "GoLand"
+    # "CLion"
+    # "GoLand"
     "IdeaIU"     # IntelliJ IDEA Ultimate (use IdeaIC for Community)
-    "PhpStorm"
-    "PyCharm"    # PyCharm Professional / Community share this prefix
-    "Rider"
-    "RustRover"
-    "WebStorm"
+    # "PhpStorm"
+    # "PyCharm"    # PyCharm Professional / Community share this prefix
+    # "Rider"
+    # "RustRover"
+    # "WebStorm"
   ];
 
   # ----------------------------------------------------------------------
@@ -93,14 +93,14 @@ let
 in
 {
   home.packages = with pkgs; [
-    jetbrains.clion
-    jetbrains.goland
+    # jetbrains.clion
+    # jetbrains.goland
     jetbrains.idea           # was idea-ultimate (renamed in nixpkgs)
-    jetbrains.phpstorm
-    jetbrains.pycharm        # was pycharm-professional (renamed in nixpkgs)
-    jetbrains.rider
-    jetbrains.rust-rover
-    jetbrains.webstorm
+    # jetbrains.phpstorm
+    # jetbrains.pycharm        # was pycharm-professional (renamed in nixpkgs)
+    # jetbrains.rider
+    # jetbrains.rust-rover
+    # jetbrains.webstorm
   ];
 
   # Apply settings on every home-manager activation. Robust to version bumps

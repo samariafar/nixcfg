@@ -332,13 +332,13 @@ in
     # ATTENTION: NOT alphabetical — user's chosen in-folder order. Don't sort.
     "org/gnome/desktop/app-folders/folders/Development" = {
       apps = [
-        "webstorm.desktop"
-        "rust-rover.desktop"
-        "pycharm.desktop"
-        "goland.desktop"
-        "clion.desktop"
-        "phpstorm.desktop"
-        "rider.desktop"
+        # "webstorm.desktop"
+        # "rust-rover.desktop"
+        # "pycharm.desktop"
+        # "goland.desktop"
+        # "clion.desktop"
+        # "phpstorm.desktop"
+        # "rider.desktop"
         "idea.desktop"
         "android-studio.desktop"
         "dev.zed.Zed.desktop"
