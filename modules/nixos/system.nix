@@ -126,6 +126,7 @@
     # Security & Encryption
     age # Modern file encryption
     gnupg # GPG
+    oath-toolkit # TOTP generator (`oathtool`) — used by the `sshx` command
     openssl
     sops # Secrets management
 

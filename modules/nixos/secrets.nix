@@ -34,7 +34,11 @@
     # Active decryption key — sits on LUKS-encrypted /home.
     age.keyFile = "/home/sam/Vault/Keys/Sam/age-private.key";
 
-    # Define secrets here as needed
+    # Note: servers.* values (host, port, user, totp, jump per nickname) are
+    # NOT declared here. The `sshx` command shells out to `sops -d` at runtime
+    # and looks up fields with `yq`, defaulting missing `port`/`user` to
+    # 22/root and inferring MFA from `totp` presence. Adding a server is a
+    # single `sops secrets.yaml` edit — no Nix change needed.
     secrets = {
       "wifi/home" = { };
       "wifi/office" = { };
