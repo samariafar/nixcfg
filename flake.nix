@@ -49,6 +49,12 @@
           unstable = import nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
+            # winboat 0.9.0 still bundles electron_40 (EOL); mirror the
+            # whitelist from modules/nixos/system.nix so pkgs.unstable
+            # (imported here as a separate pkgset) evaluates too.
+            config.permittedInsecurePackages = [
+              "electron-40.10.5"
+            ];
           };
         })
         nur.overlays.default

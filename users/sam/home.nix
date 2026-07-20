@@ -64,7 +64,6 @@
       # mission-center  # Switched to Resources
       newsflash
       obs-studio
-      obsidian
       pika-backup
       planify
       pnpm
@@ -97,6 +96,8 @@
       codex
       gemini-cli
       lmstudio
+      # obsidian on stable (1.10.3) pins EOL electron_40; unstable (1.12.7+) uses electron_41.
+      obsidian
       opencode
       winboat
     ]) ++ (with pkgs.nodePackages; [

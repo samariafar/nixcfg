@@ -28,6 +28,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # winboat 0.9.0 still bundles electron_40 (EOL). Whitelist that single
+  # version until upstream bumps to electron_41+; revisit on future updates.
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-40.10.5"
+  ];
+
   # Mirror the nixpkgs.config setting above for ad-hoc CLI invocations
   # (`nix shell nixpkgs#…`, `nix-env -iA`, `nix run`) that bypass the
   # module-level config and only consult this env var.

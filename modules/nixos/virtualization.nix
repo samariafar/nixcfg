@@ -4,6 +4,8 @@
   virtualisation = {
     docker = {
       enable = true;
+      # docker_28 was marked insecure (unmaintained since 2025-11); track the next major.
+      package = pkgs.docker_29;
 
       # Cap per-container log files so a chatty container can't silently fill
       # the disk (default json-file driver is unbounded). Keep live-restore
