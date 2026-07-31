@@ -34,7 +34,7 @@
       # modules/home-manager/programs/cli/direnv.nix), so the global copies
       # can be removed. Until then, treat the toolchain entries below as
       # transitional — drop them as projects gain their own dev shells.
-      android-studio
+      # android-studio
       blanket
       bruno
       bun
