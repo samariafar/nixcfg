@@ -34,6 +34,22 @@
     # Active decryption key — sits on LUKS-encrypted /home.
     age.keyFile = "/home/sam/Vault/Keys/Sam/age-private.key";
 
+    # ATTENTION: REQUIRED because age.keyFile lives on /home rather than /.
+    #
+    # NixOS 26.05 runs activation scripts from the initrd (the
+    # `initrd-nixos-activation` unit, ordered before `initrd-switch-root`), so
+    # the default activation-script path ran ~2.3 s BEFORE /home was mounted
+    # and died with "cannot read keyfile". That left /run/secrets and
+    # /run/secrets-rendered absent entirely, which in turn failed
+    # NetworkManager-ensure-profiles (wifi/*) and the profiles/artifex/*
+    # templates. It worked on 25.11 only because activation ran later there.
+    #
+    # This moves secret installation into the sops-install-secrets systemd
+    # unit instead, which derives `RequiresMountsFor` from age.keyFile and is
+    # ordered after local-fs.target — so it waits for /home by construction.
+    # Do NOT remove this while the key lives on a separately-mounted volume.
+    useSystemdActivation = true;
+
     # Note: servers.* values (host, port, user, totp, jump per nickname) are
     # NOT declared here. The `sshx` command shells out to `sops -d` at runtime
     # and looks up fields with `yq`, defaulting missing `port`/`user` to
