@@ -100,9 +100,12 @@
       #obsidian
       opencode
       #winboat
-    ]) ++ (with pkgs.nodePackages; [
+    ])
+    # `pkgs.nodePackages` was removed in nixpkgs 26.05 — the packages it held
+    # are top-level now, so this stays inside the outer `with pkgs;`.
+    ++ [
       npm-check-updates
-    ]);
+    ];
 
     sessionVariables = {
       EDITOR = "nano";

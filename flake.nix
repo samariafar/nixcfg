@@ -2,15 +2,15 @@
   description = "NixOS Configuration with Home Manager";
 
   inputs = {
-    # NixOS 25.11 stable channel
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    # NixOS 26.05 stable channel
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     # Nixpkgs unstable for latest packages
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # Home Manager (matching NixOS 25.11)
+    # Home Manager (matching NixOS 26.05)
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
