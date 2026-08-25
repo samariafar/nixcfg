@@ -24,9 +24,15 @@
       "x-scheme-handler/http" = "firefox.desktop";
       "x-scheme-handler/https" = "firefox.desktop";
 
-      # E-Mails
-      "message/rfc822" = "thunderbird.desktop";
-      "x-scheme-handler/mailto" = "thunderbird.desktop";
+      # E-Mails — Thunderbird is disabled (see users/sam/home.nix), so mail
+      # falls through to Firefox and whatever webmail handler it registers.
+      # ATTENTION: Firefox has no real .eml viewer; `message/rfc822` will just
+      # render the raw message source. Restore the Thunderbird lines below
+      # alongside the home.nix import if that becomes annoying.
+      #"message/rfc822" = "thunderbird.desktop";
+      #"x-scheme-handler/mailto" = "thunderbird.desktop";
+      "message/rfc822" = "firefox.desktop";
+      "x-scheme-handler/mailto" = "firefox.desktop";
     };
   };
 }

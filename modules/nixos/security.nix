@@ -99,20 +99,26 @@
   # OpenSnitch (Per-app firewall)
   services.opensnitch.enable = true;
 
-  # ClamAV antivirus
-  services.clamav = {
-    daemon.enable = true; # Real-time scanning daemon
-    updater.enable = true; # Auto-update virus signatures
-  };
+  # ClamAV antivirus — disabled. clamd holds the full signature DB resident
+  # (~1-2 GB RSS) and freshclam pulls updates on a timer; not worth it without
+  # a frontend to drive scans (the ClamUI Flatpak is disabled too, see
+  # modules/nixos/flatpak.nix). Re-enable this block and that Flatpak together.
+  #services.clamav = {
+  #  daemon.enable = true;  # Real-time scanning daemon
+  #  updater.enable = true; # Auto-update virus signatures
+  #};
 
   environment.systemPackages = with pkgs; [
-    # chkrootkit  # Removed from nixpkgs — upstream unmaintained/archived
-    # and reportedly never worked correctly on NixOS. rkhunter below covers
-    # the same role.
+    #chkrootkit  # Removed from nixpkgs — upstream unmaintained/archived
+                 # and reportedly never worked correctly on NixOS. rkhunter below covers
+                 # the same role.
     google-authenticator # TOTP setup tool
-    lynis # Security auditing tool
-    # rkhunter  # Removed from nixpkgs — upstream unmaintained, same fate
-    # as chkrootkit. No drop-in nixpkgs replacement; rely on AppArmor +
-    # auditd + ClamAV for now.
+    #lynis  # Security auditing tool
+    #rkhunter  # Removed from nixpkgs — upstream unmaintained, same fate
+               # as chkrootkit. No drop-in nixpkgs replacement.
+    #
+    # ATTENTION: with chkrootkit, rkhunter, lynis and ClamAV all disabled there
+    # is no on-host malware/rootkit scanning left. What remains is preventative
+    # only: AppArmor, auditd, firejail, OpenSnitch and fail2ban above.
   ];
 }

@@ -5,7 +5,7 @@
     enable = true;
     host = "0.0.0.0"; # Listen on all interfaces (firewall restricts access)
     port = 2283;
-    mediaLocation = "/var/lib/immich";
+    mediaLocation = "/var/lib/immich"; # TODO: Change to ~/Pictures/Archive/
 
     # Auto-sets up postgres with pgvecto.rs and redis
     database.enable = true;

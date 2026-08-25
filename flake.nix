@@ -59,7 +59,7 @@
         })
         nur.overlays.default
         (import ./overlays/claudebar.nix)
-        (import ./overlays/duplicati-gui.nix)
+        #(import ./overlays/duplicati-gui.nix)  # Duplicati disabled — see modules/nixos/backup.nix
       ];
     in
     {

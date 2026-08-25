@@ -24,7 +24,7 @@
   };
 
   # GUI for managing libvirt VMs
-  programs.virt-manager.enable = true;
+  #programs.virt-manager.enable = true;
 
   # ATTENTION: WinBoat (currently your Photoshop solution) uses Docker, not
   # libvirt + FreeRDP. If you ever switch to a WinApps-style setup that

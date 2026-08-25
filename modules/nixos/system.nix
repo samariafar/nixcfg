@@ -91,7 +91,7 @@
 
     # Development tools
     expect # Scriptable command automation
-    flutter # Flutter SDK (Dart + tooling)
+    # flutter # Flutter SDK (Dart + tooling)
     gnumake # `make` — needed outside nix-shell for `make switch` etc.
     man # Manual page reader
     man-pages # Linux man pages collection

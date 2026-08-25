@@ -135,9 +135,9 @@ in
         "org.gnome.Nautilus.desktop"
         "org.gnome.Ptyxis.desktop"
         "org.gnome.Calculator.desktop"
-        "com.vixalien.sticky.desktop"
-        "io.github.alainm23.planify.desktop"
-        "thunderbird.desktop"
+        #"com.vixalien.sticky.desktop"
+        #"io.github.alainm23.planify.desktop"
+        #"thunderbird.desktop"
         "firefox.desktop"
       ];
 
@@ -288,8 +288,16 @@ in
     # Folder identifiers are arbitrary strings; legacy GNOME-shipped folders
     # (System / Utilities / YaST / Pardus) override the defaults shipped by
     # the shell, while the human-readable IDs below are user-defined groups.
-    # Apps whose .desktop files aren't installed are silently skipped, so
-    # leaving entries for not-yet-installed packages is safe.
+    # GNOME silently skips entries whose .desktop file isn't installed, so a
+    # stale entry is harmless — but we still comment out every app that isn't
+    # currently installed, so this file stays a readable mirror of the package
+    # lists in users/sam/home.nix and modules/nixos/flatpak.nix. Uncomment an
+    # entry in the same commit that re-enables its package.
+    #
+    # Folders whose apps are all commented out (Engineering, Virtualization)
+    # keep their `folder-children` and `app-picker-layout` slots: GNOME hides
+    # an empty folder, and keeping the slot preserves the chosen ordering for
+    # when the packages come back.
 
     "org/gnome/desktop/app-folders".folder-children = [
       "Accessories"
@@ -318,9 +326,9 @@ in
         "org.gnome.Weather.desktop"
         "org.gnome.TextEditor.desktop"
         "com.belmoussaoui.Decoder.desktop"
-        "tech.digiroad.Convertidor.desktop"
+        #"tech.digiroad.Convertidor.desktop"
         "org.gnome.font-viewer.desktop"
-        "com.rafaelmardojai.Blanket.desktop"
+        #"com.rafaelmardojai.Blanket.desktop"
         "com.github.FontManager.FontManager.desktop"
         "com.github.FontManager.FontViewer.desktop"
         "org.gnome.Characters.desktop"
@@ -332,23 +340,23 @@ in
     # ATTENTION: NOT alphabetical — user's chosen in-folder order. Don't sort.
     "org/gnome/desktop/app-folders/folders/Development" = {
       apps = [
-        # "webstorm.desktop"
-        # "rust-rover.desktop"
-        # "pycharm.desktop"
-        # "goland.desktop"
-        # "clion.desktop"
-        # "phpstorm.desktop"
-        # "rider.desktop"
-        "idea.desktop"
-        "android-studio.desktop"
+        #"webstorm.desktop"
+        #"rust-rover.desktop"
+        #"pycharm.desktop"
+        #"goland.desktop"
+        #"clion.desktop"
+        #"phpstorm.desktop"
+        #"rider.desktop"
+        #"idea.desktop"
+        #"android-studio.desktop"
         "dev.zed.Zed.desktop"
-        "lm-studio.desktop"
-        "bruno.desktop"
-        "gitkraken.desktop"
-        "SourceGit.desktop"
-        "imhex.desktop"
-        "io.gitlab.liferooter.TextPieces.desktop"
-        "chromium-browser.desktop"
+        #"lm-studio.desktop"
+        #"bruno.desktop"
+        #"gitkraken.desktop"
+        #"SourceGit.desktop"
+        #"imhex.desktop"
+        #"io.gitlab.liferooter.TextPieces.desktop"
+        #"chromium-browser.desktop"
       ];
       name = "Development";
       translate = false;
@@ -356,13 +364,13 @@ in
 
     "org/gnome/desktop/app-folders/folders/Engineering" = {
       apps = [
-        "org.freecad.FreeCAD.desktop"
-        "org.kicad.kicad.desktop"
-        "org.kicad.eeschema.desktop"
-        "org.kicad.pcbnew.desktop"
-        "org.kicad.gerbview.desktop"
-        "org.kicad.bitmap2component.desktop"
-        "org.kicad.pcbcalculator.desktop"
+        #"org.freecad.FreeCAD.desktop"
+        #"org.kicad.kicad.desktop"
+        #"org.kicad.eeschema.desktop"
+        #"org.kicad.pcbnew.desktop"
+        #"org.kicad.gerbview.desktop"
+        #"org.kicad.bitmap2component.desktop"
+        #"org.kicad.pcbcalculator.desktop"
       ];
       name = "Engineering";
       translate = false;
@@ -373,11 +381,11 @@ in
       apps = [
         "org.kde.krita.desktop"
         "org.inkscape.Inkscape.desktop"
-        "io.github.shonebinu.Defuse.desktop"
+        #"io.github.shonebinu.Defuse.desktop"
         "com.github.finefindus.eyedropper.desktop"
         "com.github.huluti.Curtail.desktop"
         "be.alexandervanhee.gradia.desktop"
-        "org.gnome.gitlab.YaLTeR.VideoTrimmer.desktop"
+        #"org.gnome.gitlab.YaLTeR.VideoTrimmer.desktop"
       ];
       name = "Graphics";
       translate = false;
@@ -386,7 +394,7 @@ in
     # ATTENTION: NOT alphabetical — user's chosen in-folder order. Don't sort.
     "org/gnome/desktop/app-folders/folders/Internet" = {
       apps = [
-        "Cinny.desktop"
+        #"Cinny.desktop"
         "io.gitlab.news_flash.NewsFlash.desktop"
         "app.drey.Warp.desktop"
       ];
@@ -403,8 +411,8 @@ in
         "org.gnome.Decibels.desktop"
         "org.gnome.Showtime.desktop"
         "org.gnome.Snapshot.desktop"
-        "vlc.desktop"
-        "com.obsproject.Studio.desktop"
+        #"vlc.desktop"
+        #"com.obsproject.Studio.desktop"
       ];
       name = "Media";
       translate = false;
@@ -424,16 +432,16 @@ in
 
     "org/gnome/desktop/app-folders/folders/Office" = {
       apps = [
-        "obsidian.desktop"
-        "writer.desktop"
-        "calc.desktop"
-        "impress.desktop"
-        "draw.desktop"
-        "base.desktop"
-        "math.desktop"
+        #"obsidian.desktop"
+        #"writer.desktop"
+        #"calc.desktop"
+        #"impress.desktop"
+        #"draw.desktop"
+        #"base.desktop"
+        #"math.desktop"
         "org.nickvision.money.desktop"
-        "app.tintero.Tintero.desktop"
-        "startcenter.desktop"
+        #"app.tintero.Tintero.desktop"
+        #"startcenter.desktop"
       ];
       name = "Office";
       translate = false;
@@ -452,8 +460,8 @@ in
     "org/gnome/desktop/app-folders/folders/Remote" = {
       apps = [
         "org.remmina.Remmina.desktop"
-        "rustdesk.desktop"
-        "com.teamviewer.TeamViewer.desktop"
+        #"rustdesk.desktop"
+        #"com.teamviewer.TeamViewer.desktop"
         "org.gnome.NetworkDisplays.desktop"
       ];
       name = "Remote";
@@ -463,13 +471,13 @@ in
     # ATTENTION: NOT alphabetical — user's chosen in-folder order. Don't sort.
     "org/gnome/desktop/app-folders/folders/Security" = {
       apps = [
-        "io.github.linx_systems.ClamUI.desktop"
+        #"io.github.linx_systems.ClamUI.desktop"
         "org.cryptomator.Cryptomator.desktop"
         "com.github.ADBeveridge.Raider.desktop"
         "fr.romainvigier.MetadataCleaner.desktop"
-        "com.belmoussaoui.Obfuscate.desktop"
+        #"com.belmoussaoui.Obfuscate.desktop"
         "com.cloudflare.WarpTaskbar.desktop"
-        "proton-bridge-gui.desktop"
+        #"proton-bridge-gui.desktop"
         "org.gnome.seahorse.Application.desktop"
       ];
       name = "Security";
@@ -480,7 +488,7 @@ in
     "org/gnome/desktop/app-folders/folders/System" = {
       apps = [
         "org.gnome.baobab.desktop"
-        "org.gnome.SystemMonitor.desktop"
+        #"org.gnome.SystemMonitor.desktop"
       ];
       name = "X-GNOME-Shell-System.directory";
       translate = true;
@@ -497,8 +505,8 @@ in
         "com.mattjakeman.ExtensionManager.desktop"
         "org.gnome.Extensions.desktop"
         "org.gnome.DiskUtility.desktop"
-        "com.duplicati.app.desktop"
-        "org.gnome.World.PikaBackup.desktop"
+        #"com.duplicati.app.desktop"
+        #"org.gnome.World.PikaBackup.desktop"
         "blueman-manager.desktop"
         "cups.desktop"
         "nixos-manual.desktop"
@@ -510,8 +518,8 @@ in
 
     "org/gnome/desktop/app-folders/folders/Virtualization" = {
       apps = [
-        "virt-manager.desktop"
-        "winboat.desktop"
+        #"virt-manager.desktop"
+        #"winboat.desktop"
       ];
       name = "Virtualization";
       translate = false;
