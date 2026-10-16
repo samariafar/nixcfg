@@ -94,6 +94,7 @@
     # flutter # Flutter SDK (Dart + tooling)
     gnumake # `make` — needed outside nix-shell for `make switch` etc.
     sentry-cli # Sentry error tracking CLI
+    wrangler # Cloudflare Workers CLI
     man # Manual page reader
     man-pages # Linux man pages collection
     nil # Nix LSP server
