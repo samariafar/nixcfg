@@ -13,7 +13,7 @@
     ../../modules/home-manager/programs/cli/tmux.nix
     #../../modules/home-manager/programs/gui/duplicati.nix
     ../../modules/home-manager/programs/gui/firefox.nix
-    #../../modules/home-manager/programs/gui/intellij.nix
+    ../../modules/home-manager/programs/gui/intellij.nix
     #../../modules/home-manager/programs/gui/thunderbird.nix
     ../../modules/home-manager/programs/gui/zed.nix
   ];

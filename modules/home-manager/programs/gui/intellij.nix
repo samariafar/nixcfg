@@ -19,7 +19,7 @@ let
     # "PyCharm"    # PyCharm Professional / Community share this prefix
     # "Rider"
     # "RustRover"
-    # "WebStorm"
+    "WebStorm"
   ];
 
   # ----------------------------------------------------------------------
@@ -95,12 +95,12 @@ in
   home.packages = with pkgs; [
     # jetbrains.clion
     # jetbrains.goland
-    jetbrains.idea           # was idea-ultimate (renamed in nixpkgs)
+    # jetbrains.idea           # was idea-ultimate (renamed in nixpkgs)
     # jetbrains.phpstorm
     # jetbrains.pycharm        # was pycharm-professional (renamed in nixpkgs)
     # jetbrains.rider
     # jetbrains.rust-rover
-    # jetbrains.webstorm
+    jetbrains.webstorm
   ];
 
   # Apply settings on every home-manager activation. Robust to version bumps
