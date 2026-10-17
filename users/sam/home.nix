@@ -91,6 +91,7 @@
       #vlc
       volta
       warp
+      jetbrains.webstorm
     ] ++ (with pkgs.unstable; [
       claude-code
       #codex
