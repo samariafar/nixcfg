@@ -20,7 +20,18 @@
   '';
 
   # Kernel audit framework (logs security-relevant events)
-  security.auditd.enable = true;
+  # NixOS's auditd module does NOT set rotation by default — max_log_file /
+  # max_log_file_action are absent from auditd.conf, so logs accumulate
+  # until the disk fills. The `-S execve` rule below is high-volume on a
+  # daily-driver machine, hence explicit rotation + cap here.
+  security.auditd = {
+    enable = true;
+    settings = {
+      max_log_file = 100;                # MB per log file
+      num_logs = 5;                      # keep 5 rotated files
+      max_log_file_action = "ROTATE";
+    };
+  };
   security.audit = {
     enable = true;
     rules = [
