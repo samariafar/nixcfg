@@ -77,7 +77,7 @@ let
   mkCopyLine = prefix: relPath: src: ''
     for d in "$HOME/.config/JetBrains/${prefix}"*/; do
       [ -d "$d" ] || continue
-      install -Dm644 ${src} "$d${relPath}"
+      install -Dm644 ${src} "${d}${relPath}"
     done
   '';
 
