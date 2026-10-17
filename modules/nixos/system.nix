@@ -99,6 +99,7 @@
     # Development tools
     expect # Scriptable command automation
     # flutter # Flutter SDK (Dart + tooling)
+    flyctl # Fly.io CLI
     gnumake # `make` — needed outside nix-shell for `make switch` etc.
     sentry-cli # Sentry error tracking CLI
     wrangler # Cloudflare Workers CLI
