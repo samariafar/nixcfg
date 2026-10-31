@@ -110,6 +110,7 @@
 
     sessionVariables = {
       EDITOR = "nano";
+      OPENCODE_DISABLE_MOUSE = "true";
       VISUAL = "nano";
       VOLTA_HOME = "${config.home.homeDirectory}/.volta";
     };
