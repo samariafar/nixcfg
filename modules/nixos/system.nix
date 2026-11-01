@@ -3,12 +3,15 @@
 {
   time.timeZone = "Europe/Amsterdam";
 
-  # Force the legacy HD-Audio driver instead of SOF for the built-in Intel
-  # cAVS audio. After the 26.05 kernel/firmware bump, the SOF DSP probe stalls
-  # right after "DSP detected" and no sound card registers (GNOME shows
-  # "Dummy Output"). snd_hda_intel drives the Realtek codec directly and is
-  # reliable on this Raptor Lake machine. Revisit on future kernel upgrades.
-  boot.kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+  # Use the SOF DSP driver for the built-in Intel cAVS audio. On this machine
+  # (Acer Aspire Go 16, Raptor Lake-P + Conexant CX11970) the internal
+  # microphone is a digital MEMS array exposed only through the DSP — the
+  # codec has no analog internal-mic pin. Forcing the legacy HD-Audio driver
+  # (dsp_driver=1) restores the speakers but permanently disables the internal
+  # mic, so SOF is required for both. If a future kernel regresses SOF and
+  # brings back "Dummy Output", temporarily boot with dsp_driver=1 to get
+  # output back (accepting that the mic stops working) and re-check upstream.
+  boot.kernelParams = [ "snd-intel-dspcfg.dsp_driver=3" ];
 
   # English UI (messages, menus, app text) with Dutch formatting for
   # dates, numbers, currency, paper sizes, etc. defaultLocale governs
