@@ -356,7 +356,7 @@ in
         #"SourceGit.desktop"
         #"imhex.desktop"
         #"io.gitlab.liferooter.TextPieces.desktop"
-        #"chromium-browser.desktop"
+        "chromium-browser.desktop"
       ];
       name = "Development";
       translate = false;

@@ -38,7 +38,7 @@
       #blanket
       #bruno
       bun
-      #chromium
+      chromium
       #cinny-desktop
       cryptomator
       curtail
