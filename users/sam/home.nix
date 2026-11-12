@@ -96,6 +96,10 @@
       claude-code
       codex
       #gemini-cli
+      # herdr-desktop only puts `herdr-app` on PATH and calls its
+      # herdr-core dependency by store path. The Herdr mobile app looks for
+      # core on PATH over SSH, so install it explicitly (same derivation).
+      herdr-core
       herdr-desktop
       #lmstudio
       # obsidian on stable (1.10.3) pins EOL electron_40; unstable (1.12.7+) uses electron_41.
