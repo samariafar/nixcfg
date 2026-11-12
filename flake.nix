@@ -8,6 +8,14 @@
     # Nixpkgs unstable for latest packages
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # ATTENTION: temporary pin for packages that Hydra failed to build in the
+    # current nixos-unstable, so they'd compile locally (huge builds):
+    #   - codex 0.167.0 (aws-lc-sys; fixed in >= 0.167.1)
+    #   - opencode 2.2.5 (not cached; would also compile Node.js)
+    # This older unstable rev has cached, working builds of both. Drop each
+    # entry from the overlay below once nixos-unstable has it cached again.
+    nixpkgs-unstable-pinned.url = "github:NixOS/nixpkgs/55bfb4d7437bd4e09ab7cba58a43bd68eb310044";
+
     # Home Manager (matching NixOS 26.05)
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -39,7 +47,7 @@
     agents.url = "git+ssh://git@github.com/samariafar/agents.git";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, sops-nix, nur, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-unstable-pinned, home-manager, nix-flatpak, sops-nix, nur, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -55,6 +63,13 @@
             config.permittedInsecurePackages = [
               "electron-40.10.5"
             ];
+          };
+        })
+        # Take broken-in-unstable packages from the pinned rev (see
+        # nixpkgs-unstable-pinned input).
+        (final: prev: {
+          unstable = prev.unstable // {
+            inherit (import nixpkgs-unstable-pinned { inherit system; }) codex opencode;
           };
         })
         nur.overlays.default
