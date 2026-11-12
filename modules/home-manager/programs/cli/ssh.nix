@@ -34,31 +34,33 @@ in
     enable = true;
 
     # home-manager 25.11 deprecates the implicit defaults under programs.ssh.
-    # Opt out and re-declare any defaults we want under matchBlocks."*".
+    # Opt out and re-declare any defaults we want under settings."*".
     enableDefaultConfig = false;
 
     # Default identity is the Sam key; artifex.* aliases route to the Artifex key.
-    matchBlocks = {
+    # Keys are upstream ssh_config(5) directive names (home-manager 26.05
+    # replaced matchBlocks with this freeform `settings`).
+    settings = {
       "*" = {
-        identityFile = samKey;
+        IdentityFile = samKey;
       };
 
       "gitlab.alpinelinux.org" = {
-        identityFile = artifexKey;
+        IdentityFile = artifexKey;
       };
 
       # Aliases that resolve to real hosts but use the Artifex key.
       # Usage: git clone git@artifex.github.com:org/repo.git
       "artifex.github.com" = {
-        hostname = "github.com";
-        identityFile = artifexKey;
-        extraOptions.HostKeyAlias = "github.com";
+        HostName = "github.com";
+        IdentityFile = artifexKey;
+        HostKeyAlias = "github.com";
       };
 
       "artifex.gitlab.com" = {
-        hostname = "gitlab.com";
-        identityFile = artifexKey;
-        extraOptions.HostKeyAlias = "gitlab.com";
+        HostName = "gitlab.com";
+        IdentityFile = artifexKey;
+        HostKeyAlias = "gitlab.com";
       };
     };
   };
