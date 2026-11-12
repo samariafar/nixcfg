@@ -9,9 +9,12 @@
   };
 
   # TOTP 2FA via PAM (Google Authenticator compatible)
-  # ATTENTION: Run `google-authenticator` as your user to generate TOTP secret
-  # before enabling SSH, otherwise you'll be locked out
-  security.pam.services.sshd.googleAuthenticator.enable = true;
+  # Disabled: SSH is key-only so the Herdr mobile app can connect without a
+  # keyboard-interactive prompt. To re-enable, run `google-authenticator` as
+  # your user first (or you'll be locked out), uncomment this, and restore
+  # `AuthenticationMethods = "publickey,keyboard-interactive:pam"` plus
+  # `KbdInteractiveAuthentication = true` in modules/nixos/networking.nix.
+  # security.pam.services.sshd.googleAuthenticator.enable = true;
 
   # Sudo hardening (5-minute timeout)
   security.sudo.extraConfig = ''
@@ -80,7 +83,7 @@
   # };
 
   # Fail2ban (block brute-force attempts)
-  # NOTE: SSH is currently disabled, but jail is configured for when enabled
+  # sshd jail covers the Tailscale-only SSH server (modules/nixos/networking.nix)
   services.fail2ban = {
     enable = true;
     bantime = "1h";

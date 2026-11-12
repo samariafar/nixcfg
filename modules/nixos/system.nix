@@ -199,7 +199,12 @@
     extraGroups = [ "audio" "docker" "libvirtd" "networkmanager" "video" "wheel" ];
     initialPassword = "changeme";
     openssh.authorizedKeys.keyFiles = [
-      /home/sam/Vault/Keys/Sam/ssh-public.key
+      ../../users/sam/files/ssh-public.key # Copied in-repo: pure flake eval cannot read ~/Vault
+    ];
+    openssh.authorizedKeys.keys = [
+      # Herdr mobile app; from= pins it to mobile's tailnet IP (matches
+      # AllowUsers in modules/nixos/networking.nix).
+      ''from="100.73.8.15" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyh7Xk6syWC4Gqek38YIhJPk0BIlFyUSaHXN5L654YF herdr-mobile''
     ];
   };
 

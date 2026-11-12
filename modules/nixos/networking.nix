@@ -55,12 +55,32 @@
     enable = true;
     allowedTCPPorts = [ ];
     allowedUDPPorts = [ ];
+
+    # SSH is reachable only from the mobile device over Tailscale.
+    # - Non-Tailscale interfaces (LAN/Wi-Fi/WAN): blocked by the default
+    #   NixOS firewall, since openFirewall = false below.
+    # - tailscale0: tailscaled inserts its own `ts-input` chain at the top
+    #   of INPUT that accepts tailnet traffic before nixos-fw runs, so the
+    #   restriction lives in the raw table (PREROUTING), which runs earlier
+    #   and which tailscaled doesn't manage. -D first keeps reloads idempotent.
+    # ATTENTION: update the IP if mobile is re-registered on the tailnet.
+    extraCommands = ''
+      iptables -t raw -D PREROUTING -i tailscale0 -p tcp --dport 7747 ! -s 100.73.8.15 -j DROP 2>/dev/null || true
+      iptables -t raw -A PREROUTING -i tailscale0 -p tcp --dport 7747 ! -s 100.73.8.15 -j DROP
+      ip6tables -t raw -D PREROUTING -i tailscale0 -p tcp --dport 7747 -j DROP 2>/dev/null || true
+      ip6tables -t raw -A PREROUTING -i tailscale0 -p tcp --dport 7747 -j DROP
+    '';
+    extraStopCommands = ''
+      iptables -t raw -D PREROUTING -i tailscale0 -p tcp --dport 7747 ! -s 100.73.8.15 -j DROP 2>/dev/null || true
+      ip6tables -t raw -D PREROUTING -i tailscale0 -p tcp --dport 7747 -j DROP 2>/dev/null || true
+    '';
   };
 
-  # SSH server (currently disabled, but pre-hardened for when enabled)
+  # SSH server: key-only, reachable solely from the mobile device over
+  # Tailscale (used by the Herdr mobile app). See firewall rules above.
   services.openssh = {
-    enable = false;
-    openFirewall = true; # Auto-open firewall port when enabled
+    enable = true;
+    openFirewall = false; # Never expose on LAN/Wi-Fi/WAN
     ports = [ 7747 ]; # Non-standard port
 
     # Use only modern, secure ed25519 host key
@@ -75,17 +95,18 @@
       # Authentication
       PermitRootLogin = "no";
       PasswordAuthentication = false;
-      KbdInteractiveAuthentication = true; # Required for TOTP 2FA via PAM
+      KbdInteractiveAuthentication = false; # No TOTP prompt (see security.nix)
       PubkeyAuthentication = true;
       PermitEmptyPasswords = false;
       HostbasedAuthentication = false;
       IgnoreRhosts = true;
 
-      # Require BOTH SSH key AND TOTP code (2FA)
-      AuthenticationMethods = "publickey,keyboard-interactive:pam";
+      # Key-only authentication
+      AuthenticationMethods = "publickey";
 
-      # Restrict access to specific user(s) only
-      AllowUsers = [ "sam" ];
+      # Only user `sam`, and only from mobile's tailnet IP (second layer
+      # behind the firewall rule; sshd enforces it regardless of netfilter).
+      AllowUsers = [ "sam@100.73.8.15" ];
 
       # Connection limits
       MaxAuthTries = 3;
@@ -118,14 +139,10 @@
         "hmac-sha2-256-etm@openssh.com"
         "umac-128-etm@openssh.com"
       ];
-      HostKeyAlgorithms = [
-        "ssh-ed25519"
-        "ssh-ed25519-cert-v01@openssh.com"
-      ];
-      PubkeyAcceptedAlgorithms = [
-        "ssh-ed25519"
-        "ssh-ed25519-cert-v01@openssh.com"
-      ];
+      # Plain comma-separated strings: unlike Ciphers/Macs/KexAlgorithms,
+      # these aren't list-typed options in the NixOS openssh module.
+      HostKeyAlgorithms = "ssh-ed25519,ssh-ed25519-cert-v01@openssh.com";
+      PubkeyAcceptedAlgorithms = "ssh-ed25519,ssh-ed25519-cert-v01@openssh.com";
 
       # Misc hardening
       UsePAM = true;
