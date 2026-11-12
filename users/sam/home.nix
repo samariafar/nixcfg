@@ -94,7 +94,7 @@
       jetbrains.webstorm
     ] ++ (with pkgs.unstable; [
       claude-code
-      #codex
+      codex
       #gemini-cli
       #lmstudio
       # obsidian on stable (1.10.3) pins EOL electron_40; unstable (1.12.7+) uses electron_41.
