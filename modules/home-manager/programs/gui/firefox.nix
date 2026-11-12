@@ -5,6 +5,11 @@
     enable = true;
     languagePacks = [ "en-US" ];
 
+    # Keep the profile at ~/.mozilla/firefox (legacy default before
+    # stateVersion 26.05). Switching to the XDG path needs a manual move of
+    # the live profile first — see the home-manager warning for steps.
+    configPath = ".mozilla/firefox";
+
     # ----------------------------------------------------------------------
     # Enterprise policies — applied via policies.json
     # ----------------------------------------------------------------------

@@ -140,6 +140,9 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    # Keep exporting XDG_*_DIR session variables (legacy default before
+    # stateVersion 26.05) so scripts relying on them keep working.
+    setSessionVariables = true;
   };
 
   # Nautilus / GTK file manager bookmarks (left sidebar)
