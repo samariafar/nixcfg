@@ -21,6 +21,19 @@
       fi
     '';
 
+  # The upstream module links ~/.claude/settings.json through two Nix-store
+  # hops (home-manager-files → hm_settings.json → working tree). Claude Code
+  # writes settings atomically by creating a temp file beside the first hop,
+  # which lands in the read-only /nix/store and fails with EROFS whenever it
+  # updates settings (e.g. `claude plugin install`). Replace that entry with a
+  # single direct symlink into the writable working tree.
+  home.file.".claude/settings.json".enable = lib.mkForce false;
+  home.activation.linkClaudeSettings =
+    lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+      mkdir -p "$HOME/.claude"
+      ln -sfn "${config.agents.repoPath}/settings.json" "$HOME/.claude/settings.json"
+    '';
+
   # The git-crypt symmetric key lives inside the repo at secrets.yaml as
   # the base64-encoded value `git_crypt_key`, encrypted with the user's
   # age key. On a fresh clone the working tree is encrypted gibberish
