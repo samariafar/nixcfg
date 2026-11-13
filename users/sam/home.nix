@@ -122,6 +122,17 @@
     # Volta-managed Node shims (npm globals installed via `volta install`).
     sessionPath = [ "${config.home.homeDirectory}/.volta/bin" ];
 
+    # `volta setup` writes ~/.volta/bin/* as absolute symlinks to a Nix store
+    # path. That path is garbage-collected as soon as the volta derivation
+    # changes, leaving dangling shims (`bash: npm: command not found`). Point
+    # them at the stable profile symlink on every activation instead.
+    activation.voltaShims = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p "$HOME/.volta/bin"
+      for tool in node npm npx pnpm pnpx yarn yarnpkg; do
+        ln -sfn "${config.home.profileDirectory}/bin/volta-shim" "$HOME/.volta/bin/$tool"
+      done
+    '';
+
     # Ensure custom top-level directories exist on activation. Safe to re-run
     # — `mkdir -p` skips paths that already exist.
     activation.createDirs = config.lib.dag.entryAfter [ "writeBoundary" ] ''
