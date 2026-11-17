@@ -340,7 +340,8 @@ in
     # ATTENTION: NOT alphabetical — user's chosen in-folder order. Don't sort.
     "org/gnome/desktop/app-folders/folders/Development" = {
       apps = [
-        #"webstorm.desktop"
+        "herdr-app.desktop"
+        "webstorm.desktop"
         #"rust-rover.desktop"
         #"pycharm.desktop"
         #"goland.desktop"
@@ -420,7 +421,7 @@ in
 
     "org/gnome/desktop/app-folders/folders/Monitor" = {
       apps = [
-        "net.nokyan.Resources.desktop"
+        "org.gnome.Resources.desktop"
         "org.gnome.Sysprof.desktop"
         "org.gnome.Logs.desktop"
         "htop.desktop"
@@ -474,7 +475,7 @@ in
         #"io.github.linx_systems.ClamUI.desktop"
         "org.cryptomator.Cryptomator.desktop"
         "com.github.ADBeveridge.Raider.desktop"
-        "fr.romainvigier.MetadataCleaner.desktop"
+        "io.gitlab.metadatacleaner.metadatacleaner.desktop"
         #"com.belmoussaoui.Obfuscate.desktop"
         "com.cloudflare.WarpTaskbar.desktop"
         #"proton-bridge-gui.desktop"
@@ -511,6 +512,7 @@ in
         "cups.desktop"
         "nixos-manual.desktop"
         "xterm.desktop"
+        "syncthing-ui.desktop"
       ];
       name = "System";
       translate = false;
