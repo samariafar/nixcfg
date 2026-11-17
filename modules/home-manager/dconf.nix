@@ -365,12 +365,12 @@ in
     "org/gnome/desktop/app-folders/folders/Engineering" = {
       apps = [
         #"org.freecad.FreeCAD.desktop"
-        #"org.kicad.kicad.desktop"
-        #"org.kicad.eeschema.desktop"
-        #"org.kicad.pcbnew.desktop"
-        #"org.kicad.gerbview.desktop"
-        #"org.kicad.bitmap2component.desktop"
-        #"org.kicad.pcbcalculator.desktop"
+        "org.kicad.kicad.desktop"
+        "org.kicad.eeschema.desktop"
+        "org.kicad.pcbnew.desktop"
+        "org.kicad.gerbview.desktop"
+        "org.kicad.bitmap2component.desktop"
+        "org.kicad.pcbcalculator.desktop"
       ];
       name = "Engineering";
       translate = false;

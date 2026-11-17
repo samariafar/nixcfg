@@ -57,7 +57,7 @@
       gradia
       #imhex
       inkscape
-      #kicad
+      kicad
       krita
       #libreoffice
       metadata-cleaner
