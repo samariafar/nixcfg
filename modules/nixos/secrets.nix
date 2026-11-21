@@ -61,6 +61,7 @@
       "profiles/artifex/name" = { owner = "sam"; };
       "profiles/artifex/email" = { owner = "sam"; };
       "profiles/artifex/signingkey" = { owner = "sam"; };
+      "hermes/telegram_bot_token" = { owner = "sam"; };
     };
 
     # Templates render at activation time with decrypted secrets substituted
@@ -91,6 +92,16 @@
           PROFILE_ARTIFEX_NAME='${config.sops.placeholder."profiles/artifex/name"}'
           PROFILE_ARTIFEX_EMAIL='${config.sops.placeholder."profiles/artifex/email"}'
           PROFILE_ARTIFEX_SIGNINGKEY='${config.sops.placeholder."profiles/artifex/signingkey"}'
+        '';
+      };
+
+      # Secret env for Hermes Agent, merged into ~/.hermes/.env by its
+      # Home-Manager module (services.hermes-agent.environmentFiles in
+      # modules/home-manager/programs/cli/hermes-agent.nix).
+      "hermes-env" = {
+        owner = "sam";
+        content = ''
+          TELEGRAM_BOT_TOKEN=${config.sops.placeholder."hermes/telegram_bot_token"}
         '';
       };
     };

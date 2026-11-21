@@ -9,6 +9,7 @@
     ../../modules/home-manager/shell.nix
     ../../modules/home-manager/programs/cli/direnv.nix
     ../../modules/home-manager/programs/cli/git.nix
+    ../../modules/home-manager/programs/cli/hermes-agent.nix
     ../../modules/home-manager/programs/cli/ssh.nix
     ../../modules/home-manager/programs/cli/tmux.nix
     #../../modules/home-manager/programs/gui/duplicati.nix

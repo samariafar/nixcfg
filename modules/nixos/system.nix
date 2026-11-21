@@ -210,5 +210,11 @@
 
   users.users.sam.hashedPasswordFile = null; # Force password change on first login
 
+  # Keep sam's systemd user manager running without a login session, so user
+  # services (the Hermes Agent Telegram gateway, see
+  # modules/home-manager/programs/cli/hermes-agent.nix) survive logout and
+  # start at boot.
+  users.users.sam.linger = true;
+
   # security.sudo.wheelNeedsPassword = false;
 }

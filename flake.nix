@@ -45,6 +45,21 @@
     # Private repo — use SSH so Nix authenticates with the user's key instead
     # of GitHub's unauthenticated HTTPS API (which 404s on private repos).
     agents.url = "git+ssh://git@github.com/samariafar/agents.git";
+
+    # Hermes Agent (Nous Research). Not in nixpkgs; the upstream flake ships
+    # the package plus a Home-Manager module, wired up in
+    # modules/home-manager/programs/cli/hermes-agent.nix. No
+    # `inputs.nixpkgs.follows`: upstream pins its own nixpkgs to select a
+    # specific Python and refuses to evaluate against a different one.
+    hermes-agent.url = "github:NousResearch/hermes-agent";
+
+    # Nous Research's official Hermes plugins (source only, not a flake).
+    # Provides the experimental `claude-subscription-directsdk` model provider
+    # that routes Hermes through the logged-in Claude Code CLI (Pro plan).
+    hermes-official-plugins = {
+      url = "github:NousResearch/hermes-official-plugins";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-unstable-pinned, home-manager, nix-flatpak, sops-nix, nur, ... }@inputs:
