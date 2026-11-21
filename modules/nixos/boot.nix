@@ -25,7 +25,9 @@
 
   # boot.kernelParams = [ ];
   # boot.kernelModules = [ ];
-  # boot.kernel.sysctl = { };
+  # Raise the inotify watch limit for IDEs, file watchers and dev servers
+  # watching large trees (NixOS default is 524288).
+  boot.kernel.sysctl."fs.inotify.max_user_watches" = 1048576;
 
   # NTFS read/write support (uncomment to mount Windows / external NTFS drives).
   # Pairs with the `ntfs3g` userspace driver if you need older-style mounts.
