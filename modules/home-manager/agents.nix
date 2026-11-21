@@ -7,8 +7,36 @@
 # machines from needing a manual `git clone` step.
 { config, lib, pkgs, inputs, ... }:
 
+let
+  # `agents-sync` applies the repo's manifests (mcp/servers.json,
+  # plugins.json) to each agent's own config. The script runs live from the
+  # working tree, so edits to it or to the manifests need no rebuild; Nix
+  # only provides the interpreter and the `claude` CLI it shells out to.
+  agentsSync = pkgs.writeShellScriptBin "agents-sync" ''
+    export PATH=${lib.makeBinPath [ pkgs.unstable.claude-code ]}:$PATH
+    exec ${pkgs.python3.withPackages (ps: [ ps.tomlkit ps.ruamel-yaml ])}/bin/python3 \
+      "${config.agents.repoPath}/scripts/agents-sync" "$@"
+  '';
+in
 {
   imports = [ inputs.agents.homeManagerModules.default ];
+
+  home.packages = [ agentsSync ];
+
+  # Re-apply global MCP servers to Claude Code / Codex / Gemini / Hermes on
+  # every switch, and install any missing Claude plugins. Order after
+  # Hermes' own activation is irrelevant: its config merge keeps the
+  # `mcp_servers` key this writes. Never fatal: a missing repo checkout or a
+  # network hiccup must not abort the switch.
+  home.activation.agentsSync =
+    lib.hm.dag.entryAfter [ "linkGeneration" "unlockAgentsRepo" ] ''
+      if [ -f "${config.agents.repoPath}/scripts/agents-sync" ]; then
+        run ${agentsSync}/bin/agents-sync --quiet mcp sync \
+          || echo "agents-sync: mcp sync failed (continuing)" >&2
+        run ${agentsSync}/bin/agents-sync --quiet plugins sync \
+          || echo "agents-sync: plugins sync failed (continuing)" >&2
+      fi
+    '';
 
   home.activation.cloneAgentsRepo =
     lib.hm.dag.entryBefore [ "agentsRepoCheck" ] ''
