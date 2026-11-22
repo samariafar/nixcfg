@@ -106,7 +106,7 @@
       herdr-desktop
       #lmstudio
       # obsidian on stable (1.10.3) pins EOL electron_40; unstable (1.12.7+) uses electron_41.
-      #obsidian
+      obsidian
       opencode
       #winboat
     ])

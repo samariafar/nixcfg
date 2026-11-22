@@ -433,7 +433,7 @@ in
 
     "org/gnome/desktop/app-folders/folders/Office" = {
       apps = [
-        #"obsidian.desktop"
+        "obsidian.desktop"
         #"writer.desktop"
         #"calc.desktop"
         #"impress.desktop"
